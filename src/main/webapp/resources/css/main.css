@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公用*/
+.comWidth{width:1000px; margin-left:auto; margin-right:auto;}
+.leftArea{float:left;}
+.rightArea{float:right;}
+.hide{display:none;}
+.show{display:block;}
+
+/*topBar*/
+.topBar{height:51px; background-color:#F7F7F7; line-height:31px;}
+.topBar a:hover{color:red;}
+/*logo*/
+.logoBar{height:95px;}
+.logo{padding-left:81px; padding-top:23px;}
+
+
+/*登陆*/
+.login_logo .comWidth{width:560px;}
+.welcome_title{font:22px/85px "Microsoft YaHei", "微软雅黑"; color:#FFF; float:left; padding-left:28px;}
+.loginBox{width:458px; border:#999 solid 1px; margin:10px auto; position:relative;}
+.login_cont{padding:15px 76px;}
+.l_tit{color:#ffffff; line-height:25px;}
+.login_input{border:#999 solid 1px; height:32px; line-height:32px\9; text-indent:5px; width:100%;}
+.mb_10{margin-bottom:10px;}
+.autoLogin{padding-top:27px; padding-bottom:28px;}
+.checked{position:relative; top:3px; margin-right:3px;}
+.login_btn{width:309px; height:36px; }
+.login_partners{padding-top:34px;}
+.login_list li{float:left; line-height:20px;}
+.login_list span{color:#999; margin:0 2px;}
+.input_item{width:306px; float:left;}
+
+
+
+
+
+
+
+
+
+
+

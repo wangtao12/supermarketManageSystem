@@ -1,0 +1,33 @@
+@charset "utf-8";
+.selectBox{background:#CCC;overflow:hidden;font:13px Verdana, Geneva, sans-serif, '宋体';cursor:default;-moz-user-select:none}
+.selectBoxLeftNormal{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat}
+.selectBoxCenterNormal{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -24px}
+.selectBoxRightNormal{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px 0}
+.selectBoxLeftOver{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -48px}
+.selectBoxCenterOver{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -72px}
+.selectBoxRightOverl{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -48px}
+.selectBoxLeftDown{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -96px}
+.selectBoxCenterDown{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -120px}
+.selectBoxRightDown{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -96px}
+.selectBoxLeftDropdown{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -292px}
+.selectBoxCenterDropdown{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -316px}
+.selectBoxRightDropdown{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -292px}
+.optionBox{overflow-x:hidden;position:absolute;display:none;cursor:default}
+.optionHeader{overflow:hidden}
+.optionHeader div{height:100%}
+.optionHeaderLeft{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -192px}
+.optionHeaderCenter{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -218px}
+.optionHeaderRight{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -192px}
+.option div{height:100%;overflow:hidden}
+.optionLeft{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -192px}
+.optionCenter{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -218px}
+.optionRight{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -192px}
+.optionLeftSelected{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -244px}
+.optionCenterSelected{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -268px}
+.optionRightSelected{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -244px}
+.optionFooter{overflow:hidden}
+.optionFooter div{height:100%}
+.optionFooterLeft{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat 0 -216px}
+.optionFooterCenter{float:left;display:inline;background:url(../images/newindex/icon/select.png) repeat-x 0 -242px}
+.optionFooterRight{float:left;display:inline;background:url(../images/newindex/icon/select.png) no-repeat -2px -216px}
+.clear{display:none;clear:both}

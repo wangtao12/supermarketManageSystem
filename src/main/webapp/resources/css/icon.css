@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+/*--------------------------------------------------------------------------------
+
+								图标定义
+
+---------------------------------------------------------------------------------*/
+
+/* Title logo */
+.navlogo {
+	background: url(../images/small_logo.png) center center no-repeat;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	width: 100px;
+	height: 39px;
+	margin-top: 6px;
+}
+
+/* 标签关闭按钮 */
+.closebtn {
+	background-image: url(../images/nav/btn-close.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin-top:8px;
+	margin-right:4px;
+	width: 13px;
+	height: 13px;
+}
+
+.closebtn:hover{
+	background-image: url(../images/nav/btn-close-over.png);
+}
+
+
