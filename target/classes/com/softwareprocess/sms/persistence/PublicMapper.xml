@@ -13,7 +13,7 @@
 		where t1.eaccout=#{userName} and t1.epassword = #{password}
 	</select>
 	<!-- 获取用户权限列表 -->
-	<select id="getUserAuthorityList" parameterType="java.util.Hashtable" resultType="String">
+	<select id="getUserAuthorityList" parameterType="String" resultType="java.util.HashMap">
 		SELECT
 		t2.*
 		FROM e_a_relation t1,authority t2

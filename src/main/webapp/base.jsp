@@ -5,7 +5,7 @@
 
 <%
     HttpSession sessionObject = request.getSession();
-    String roleList = String.valueOf(sessionObject.getAttribute("roleList"));
+    String userAuthorityList = String.valueOf(sessionObject.getAttribute("userAuthorityList"));
 %>
 
 
@@ -147,16 +147,20 @@
     <div class="row">
         <div class="col-sm-2 col-md-1 sidebar">
             <ul class="nav nav-sidebar">
-                <% if(roleList.indexOf("admin") != -1 || roleList.indexOf("hr")  != -1) { %>
+                <% if(userAuthorityList.indexOf("管理") != -1 ) { %>
                 <li><a href="#" onclick="addTab('员工管理','./page/HR/userManager.jsp','userManager')" >员工管理</a></li>
                 <% } %>
-                <li><a href="#" onclick="addTab('在线考勤','./page/work/onlineAttendance.jsp','onlineAttendance')" >在线考勤</a></li>
-                <li><a href="#" onclick="addTab('我的考勤','./page/work/attendanceManager.jsp','attendanceManager')" >我的考勤</a></li>
-                <% if(roleList.indexOf("admin")  != -1 || roleList.indexOf("pm")  != -1 || roleList.indexOf("hr")  != -1 || roleList.indexOf("shareholder")  != -1) { %>
-                <li><a href="#" onclick="addTab('考勤审批','./page/work/attendanceVerifyManager.jsp','attendanceVerifyManager')" >考勤审批</a></li>
+                 <% if(userAuthorityList.indexOf("审批") != -1 ) { %>
+                <li><a href="#" onclick="addTab('审批管理','./page/work/onlineAttendance.jsp','onlineAttendance')" >审批管理</a></li>
                 <% } %>
-                <% if(roleList.indexOf("admin")  != -1) { %>
-                <li><a href="#" onclick="addTab('操作记录','./page/admin/userActiveLog.jsp','userActiveLog')" >操作记录</a></li>
+                <% if(userAuthorityList.indexOf("财务") != -1 ) { %>
+                 <li><a href="#" onclick="addTab('财务管理','./page/work/attendanceManager.jsp','attendanceManager')" >财务管理</a></li>
+                <% } %>
+                <% if(userAuthorityList.indexOf("销售")  != -1 ) { %>
+                <li><a href="#" onclick="addTab('销售管理','./page/work/attendanceVerifyManager.jsp','attendanceVerifyManager')" >销售管理</a></li>
+                <% } %>
+                <% if(userAuthorityList.indexOf("采购")  != -1) { %>
+                <li><a href="#" onclick="addTab('采购管理','./page/admin/userActiveLog.jsp','userActiveLog')" >采购管理</a></li>
                 <% } %>
             </ul>
 

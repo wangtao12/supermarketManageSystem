@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.softwareprocess.sms.service.PublicService;
+import com.softwareprocess.sms.tools.StringUtil;
 
 @Controller
 public class PublicController {
@@ -41,11 +42,12 @@ public class PublicController {
 			String userID = result.get(0).get("eid").toString();
 			//写入session
 			session.setAttribute("userID", userID);
-			session.setAttribute("userName", result.get(0).get("ename"));
+			session.setAttribute("userName", result.get(0).get("ename").toString());
 			//获取用户权限
 			List<Map<String,Object>> userAuthorityList = publicService.getUserAuthorityList(userID);
-			
-			
+			StringUtil stringUtil = new StringUtil();
+			String authorityString = stringUtil.convertListMapToString(userAuthorityList, "aname", ",");
+			session.setAttribute("userAuthorityList", authorityString);
 		}
 		return resultCode;
 	}
