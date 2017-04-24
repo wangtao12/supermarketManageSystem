@@ -8,9 +8,6 @@
 .hide{display:none;}
 .show{display:block;}
 
-/*topBar*/
-.topBar{height:51px; background-color:#F7F7F7; line-height:31px;}
-.topBar a:hover{color:red;}
 /*logo*/
 .logoBar{height:95px;}
 .logo{padding-left:81px; padding-top:23px;}

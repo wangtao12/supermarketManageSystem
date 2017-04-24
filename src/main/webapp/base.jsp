@@ -157,7 +157,7 @@
                  <li><a href="#" onclick="addTab('财务管理','./page/work/attendanceManager.jsp','attendanceManager')" >财务管理</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("销售")  != -1 ) { %>
-                <li><a href="#" onclick="addTab('销售管理','./page/work/attendanceVerifyManager.jsp','attendanceVerifyManager')" >销售管理</a></li>
+                <li><a href="#" onclick="addTab('销售管理','./views/sale/saleMain.jsp','saleMain')" >销售管理</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("采购")  != -1) { %>
                 <li><a href="#" onclick="addTab('采购管理','./page/admin/userActiveLog.jsp','userActiveLog')" >采购管理</a></li>

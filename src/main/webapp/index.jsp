@@ -73,8 +73,6 @@ document.onkeydown=function(event){
 				<a href="#"><img src="<c:url value="/resources/images/logo.png"/>" alt="超市管理系统"></a>
 			</div>
 			<h3 class="welcome_title">欢迎登陆超市管理系统</h3>
-			
-			萨达所大所大所大所多
 		</div>
 	</div>
 </div>
