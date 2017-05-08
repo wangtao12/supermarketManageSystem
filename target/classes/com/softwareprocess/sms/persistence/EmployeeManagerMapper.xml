@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.softwareprocess.sms.persistence.EmployeeManagerMapper">
+	<!-- 获取可操作权限列表 -->
+	<select id="getOperateAuthority" parameterType="java.util.Hashtable" resultType="java.util.Hashtable">
+		select t3.aid as id,
+		t3.aname as authorityName
+		from
+		authority t3
+		where t3.asortNum <![CDATA[   < ]]> (
+		SELECT MAX(t2.asortNum) 
+		FROM e_a_relation t1,authority t2
+		where t1.aid=t2.aid and t1.eid=#{userID} )
+	</select>
+	<select id="getEmployeeList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			t1.*,GROUP_CONCAT(t3.aname) as authority
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM employee t1,e_a_relation t2,authority t3
+		WHERE t1.eid = t2.eid and t3.aid = t2.aid
+		<if test="name != ''">
+			and ename like '$%{name}%'
+		</if>
+		<if test="name != ''">
+			and account = #{account}
+		</if>
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+
+</mapper>

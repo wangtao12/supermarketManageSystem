@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softwareprocess.sms.persistence.CommonDatabaseMapper">
+
+	<update id="updateSingleData" parameterType="java.util.HashMap" >
+		update ${table} set 
+		 ${key}=#{value}
+		WHERE ${con}=#{conValue}
+	</update>
+	
+	<delete id="deleteSingleData" parameterType="java.util.HashMap" >
+		delete from ${table} 
+		WHERE ${con}=#{conValue}
+	</delete>
+	
+	<select id="getSingleData" parameterType="java.util.HashMap"  resultType="java.util.HashMap">
+		select ${key} from ${table} where ${con}=#{conValue}
+	</select>
+	
+	<insert id="insertStringData" parameterType="java.util.HashMap" >
+		insert  into ${table}
+		<foreach index="key"  item="value" collection="data" separator="," open="("  close=")" >
+			${key}
+		</foreach>
+		VALUES
+		<foreach index="key"  item="value" collection="data" separator="," open="("  close=")">
+			#{value}
+		</foreach>
+	</insert>
+
+	<insert id="insertStringDatas" parameterType="java.util.HashMap" >
+		INSERT ALL
+		<foreach item="item" index="index" collection="data" >
+			INTO ${table}
+			<foreach index="key"  item="value" collection="firstItem" separator="," open="("  close=")" >
+				${key}
+			</foreach>
+			VALUES
+			<foreach index="key" item="value" collection="item" separator="," open="("  close=")">
+				#{value}
+			</foreach>
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<insert id="insertData" parameterType="java.util.HashMap" >
+		insert  into ${table}
+		<foreach index="key"  item="value" collection="data" separator="," open="("  close=")" >
+			${key}
+		</foreach>
+		VALUES
+		<foreach index="key"  item="value" collection="data" separator="," open="("  close=")">
+			${value}
+		</foreach>
+	</insert>
+
+	<insert id="insertDatas" parameterType="java.util.HashMap" >
+		INSERT ALL
+		<foreach item="item" index="index" collection="data" >
+			INTO ${table}
+			<foreach index="key"  item="value" collection="firstItem" separator="," open="("  close=")" >
+				${key}
+			</foreach>
+			VALUES
+			<foreach index="key" item="value" collection="item" separator="," open="("  close=")">
+				${value}
+			</foreach>
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<update id="updateStringData" parameterType="java.util.HashMap" >
+		update ${table} set 
+		<foreach index="key"  item="value" collection="data"
+			 separator="," >
+			${key} = #{value}
+		</foreach>
+		WHERE ${idfield} = #{id}
+	</update>
+	
+	<update id="updateData" parameterType="java.util.HashMap" >
+		update ${table} set 
+		<foreach index="key"  item="value" collection="data"
+			 separator="," >
+			${key} = ${value}
+		</foreach>
+		WHERE ${idfield} = #{id}
+	</update>
+	
+
+</mapper>
