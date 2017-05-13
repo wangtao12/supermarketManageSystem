@@ -10,7 +10,7 @@
 		date_format(t1.ehiredate,'%Y-%m-%d %H:%i:%s') as ehiredate,
 		t1.*
 		FROM employee t1
-		where t1.eaccout=#{userName} and t1.epassword = #{password}
+		where t1.eaccount=#{userName} and t1.epassword = #{password}
 	</select>
 	<!-- 获取用户权限列表 -->
 	<select id="getUserAuthorityList" parameterType="String" resultType="java.util.HashMap">

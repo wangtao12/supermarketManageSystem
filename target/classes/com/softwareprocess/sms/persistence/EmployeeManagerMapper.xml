@@ -10,7 +10,7 @@
 		t3.aname as authorityName
 		from
 		authority t3
-		where t3.asortNum <![CDATA[   < ]]> (
+		where t3.asortNum <![CDATA[   > ]]> (
 		SELECT MAX(t2.asortNum) 
 		FROM e_a_relation t1,authority t2
 		where t1.aid=t2.aid and t1.eid=#{userID} )
@@ -19,10 +19,11 @@
 		resultType="java.util.HashMap">
 		SELECT
 		<if test="startNum!=null">
+			date_format(t1.ehiredate,'%Y-%m-%d') as ehiredate,
 			t1.*,GROUP_CONCAT(t3.aname) as authority
 		</if>
 		<if test="startNum==null">
-			count(*) as sum
+			count(distinct t1.eid) as sum
 		</if>
 		FROM employee t1,e_a_relation t2,authority t3
 		WHERE t1.eid = t2.eid and t3.aid = t2.aid
@@ -30,7 +31,7 @@
 			and ename like '$%{name}%'
 		</if>
 		<if test="name != ''">
-			and account = #{account}
+			and eaccount = #{account}
 		</if>
 		<if test="startNum!=null">
 			limit ${startNum},${pageLength}

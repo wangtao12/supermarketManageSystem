@@ -148,7 +148,7 @@
         <div class="col-sm-2 col-md-1 sidebar">
             <ul class="nav nav-sidebar">
                 <% if(userAuthorityList.indexOf("管理") != -1 ) { %>
-                <li><a href="#" onclick="addTab('员工管理','./page/HR/userManager.jsp','userManager')" >员工管理</a></li>
+                <li><a href="#" onclick="addTab('员工管理','./views/manager/managerMain.jsp','managerMain')" >员工管理</a></li>
                 <% } %>
                  <% if(userAuthorityList.indexOf("审批") != -1 ) { %>
                 <li><a href="#" onclick="addTab('审批管理','./page/work/onlineAttendance.jsp','onlineAttendance')" >审批管理</a></li>

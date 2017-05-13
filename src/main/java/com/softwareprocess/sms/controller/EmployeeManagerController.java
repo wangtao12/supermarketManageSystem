@@ -35,14 +35,7 @@ public class EmployeeManagerController {
 	
 	private IDBuilder idBuilder = new IDBuilder();
 	
-	
-	/**
-	 * 获取员工列表
-	 * @param request
-	 * @param name  员工姓名（模糊查询）
-	 * @param account 员工账户（精确查询）
-	 * @return
-	 */
+		
 	@ResponseBody
 	@RequestMapping(value = "getEmployeeList",produces = "application/json; charset=utf-8")
 	public  String getEmployeeList(HttpServletRequest request,
@@ -69,6 +62,7 @@ public class EmployeeManagerController {
 		}
 		HttpSession session = request.getSession();
 		String userID = session.getAttribute("userID").toString();
+//		String userID = "e-1705071022274399";
 		List<Map<String, Object>> result =employeeManagerService.getOperateAuthority(userID);
 		return JsonUtil.toJSON(result);
 	}
@@ -160,23 +154,24 @@ public class EmployeeManagerController {
 	@RequestMapping(value = "updateEmployee",produces = "application/json; charset=utf-8")
 	public String updateEmployee(HttpServletRequest request,
 			@RequestParam(value="eid") String eid, 
-			@RequestParam(value="name",required = false) String name, 
-			@RequestParam(value="account",required = false) String account, 
-			@RequestParam(value="password",required = false) String password,
-			@RequestParam(value="salary",required = false) String salary,
-			@RequestParam(value="hiredate",required = false) String hiredate,
+			@RequestParam(value="name",required = false) String ename, 
+			@RequestParam(value="account",required = false) String eaccount, 
+			@RequestParam(value="password",required = false) String epassword,
+			@RequestParam(value="salary",required = false) String esalary,
+			@RequestParam(value="hiredate",required = false) String ehiredate,
 			@RequestParam(value="authorityIDList",required = false) String authorityIDList
 			){
 		if (!confirmAuthority(request)) {
 			return "authorityError";
 		}
+		System.out.println("ename"+ename);
 		String resultCode = "error";
 		Map<String,Object> param = new HashMap<String,Object>();
-		param.put("ename", name);
-		param.put("eaccount", account);
-		param.put("epassword", password);
-		param.put("esalary", salary);
-		param.put("ehiredate", hiredate);
+		param.put("ename", ename);
+		param.put("eaccount", eaccount);
+		param.put("epassword", epassword);
+		param.put("esalary", esalary);
+		param.put("ehiredate", ehiredate );
 		int update = commonDatabaseService.updateStringData("employee", "eid", eid, param);
 		if (update>0) {
 			int delete = commonDatabaseService.deleteSingleData("e_a_relation", "eid", eid);
