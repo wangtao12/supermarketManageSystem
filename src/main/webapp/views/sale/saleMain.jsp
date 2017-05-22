@@ -93,7 +93,8 @@
 			<div class="col-md-8">
 				<label for="id_select">订单商品详情  :&nbsp;</label>
 				</br> </br>
-				<textarea rows="10" cols="120" id="dingdan">空</textarea>
+				<table id="dataTable" style="text-align: center;" class="display"
+			cellspacing="0"></table>
 				</br></br></br>
 				<label>订单收银 &nbsp;&nbsp;&nbsp;:&nbsp;</label> 
 				<input id="good_count"  type="text" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" placeholder='0' readonly/>  元
@@ -150,6 +151,109 @@
 	
 	
 	</script>
+	
+	<script type="text/javascript">
+    var datatable;
+    $(document).ready(function() {
+        dataTablesServerSideInit();
+        loadData();
+        //日期选择初始化
+        $(".formDatetime").datetimepicker({
+            minView:"month",
+            format: "yyyy-mm-dd",//显示格式
+            todayBtn: true,//当前日期的按钮
+            todayHighlight:true,//当前日前是否高亮
+            language:'zh-CN', //语言选择
+            autoclose: true //关闭时间的选择
+        });
+    });
+
+    var dataTableConfig = {
+        "columns": [{
+            "title": "姓名",
+            "data": "ename"
+        }, {
+             "title": "性别",
+             "data": "esex"
+       }, {
+            "title": "账户",
+            "data": "eaccount"
+        }, {
+            "title": "密码",
+            "data": "epassword"
+        }, {
+            "title": "入职时间",
+            "data": "ehiredate"
+        }, {
+            "title": "权限",
+            "data": "authority"
+        }, {
+            "title": "基本工资",
+            "data": "esalary"
+        }, {
+            "title": "家庭住址",
+            "data": "eaddress"
+        }, {
+            "title": "联系方式",
+            "data": "econtact"
+        }, {
+            "title" : "操作",
+            "data" : null
+        }],
+        "columnDefs": [
+            {
+                "render" : function(data, type, row, meta){
+                	var button = '<button type="button" onclick="addTemp(\''+data.eid+'\')" class="btn btn-primary">修改</button> <button type="button" onclick="deleteListData(\''+data.eid+'\')" class="btn btn-danger">删除</button> ';
+                    return button;
+                },
+                "targets" : 9
+            },
+            {
+                "render" : function(data, type, row, meta){
+                    if(data == "m") {
+                        return '男'
+                    }else if(data == "f"){
+                    	return '女'
+                    }else{
+                    	//console.log(data);
+                    	return ''
+                    }
+                },
+                "targets" : [1]
+            },
+            {
+                "render" : function(data, type, row, meta){
+                    if(typeof data == "undefined") {
+                        return ''
+                    }
+                    return data;
+                },
+                "targets" : [7,8]
+            }
+            
+        ]
+    };
+
+    var datatablesData;//当前页查询数据缓存
+    /**
+     * 加载数据
+     */
+    function loadData() {
+        datatable = $('#dataTable')
+            .on('init.dt', function (){
+                datatablesData = datatable.data();
+            })
+            .DataTable(dataTableConfig);
+    }
+
+    /**
+     * 重新加载数据
+     */
+    function reloadData() {
+        datatable.destroy();
+        loadData();
+    }
+    </script>
 
 </body>
 </html>
