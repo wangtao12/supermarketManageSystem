@@ -36,4 +36,12 @@ public class PublicService {
 		return publicMapper.getUserAuthorityList(userID);
 	}
 
+	public Map<String, Object> getEmployeeInfo(String eid) {
+		// TODO Auto-generated method stub
+		Map<String, Object> param = new HashMap<>();
+		param.put("eid", eid);
+		Map<String, Object> result =  publicMapper.getEmployeeInfo(param);
+		return result;
+	}
+
 }

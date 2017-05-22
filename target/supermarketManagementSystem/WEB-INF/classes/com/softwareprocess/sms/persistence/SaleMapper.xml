@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.softwareprocess.sms.persistence.SaleMapper">
+
+
+	<!-- 获取商品信息列表 -->
+	<select id="getGoodList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT t1.gid,t1.gname,t1.gprice,t1.gstock,t2.gkid
+		FROM good t1,good_kind t2,g-gk-relation t3
+		WHERE t1.gid = t3.gid and
+		t3.gkid = t2.gkid
+		<if test="gkID != ''">
+			and t2.gkid #{gkID}   
+		</if>
+		<if test="goodName != ''">
+			and t1.gname like '$%{goodName}%'
+		</if>
+	</select>
+	
+	<!-- 获取单个商品信息 -->
+	<select id="getGoodInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT t1。*
+		FROM good t1
+		WHERE 1
+		<if test="goodName != ''">
+			and t1.gname = #{goodName}
+		</if>
+	</select>
+	
+	<!-- 获取商品种类列表 -->
+	<select id="getGoodKindList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT t1.*
+		FROM good_kind t1
+	</select>
+
+</mapper>

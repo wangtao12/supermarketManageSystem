@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="supermarketManagementSystem"/>
-        <property name="java-output-path" value="/supermarketManagementSystem/target/classes"/>
         <property name="component.exclusion.patterns" value="WEB-INF/web.xml"/>
+        <property name="java-output-path" value="/supermarketManagementSystem/target/classes"/>
     </wb-module>
 </project-modules>

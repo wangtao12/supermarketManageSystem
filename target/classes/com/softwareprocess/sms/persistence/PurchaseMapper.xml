@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.softwareprocess.sms.persistence.PurchaseMapper">
+	<select id="getGoodStockList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			t1.*,t2.scount
+		</if>
+		<if test="startNum==null">
+			count(distinct t1.gid) as sum
+		</if>
+		FROM good t1 LEFT JOIN
+			(SELECT t2.gid,SUM(t2.scount) AS scount FROM sell_record t2
+				WHERE date_format(t2.sdate,'%Y-%m')=date_format(now(),'%Y-%m')
+				GROUP BY gid) t2 ON t1.gid = t2.gid
+		WHERE 1
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+
+</mapper>

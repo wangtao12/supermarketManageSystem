@@ -7,7 +7,7 @@
 	<!-- 用户登录验证 -->
 	<select id="checkLogin" parameterType="java.util.Hashtable" resultType="java.util.Hashtable">
 		SELECT
-		date_format(t1.ehiredate,'%Y-%m-%d %H:%i:%s') as ehiredate,
+		date_format(t1.ehiredate,'%Y-%m-%d') as ehiredate,
 		t1.*
 		FROM employee t1
 		where t1.eaccount=#{userName} and t1.epassword = #{password}
@@ -18,6 +18,16 @@
 		t2.*
 		FROM e_a_relation t1,authority t2
 		where t1.aid=t2.aid and t1.eid=#{userID} 
+	</select>
+	
+	
+	<!-- 获取用户信息 -->
+	<select id="getEmployeeInfo" parameterType="String" resultType="java.util.HashMap">
+		SELECT
+		t1.eid,t1.epassword,t1.esex,t1.eaddress,t1.ename,t1.econtact,
+		date_format(t1.ebirthyear,'%Y-%m-%d') as ebirthyear
+		FROM employee t1
+		where t1.eid = #{eid} 
 	</select>
 
 </mapper>

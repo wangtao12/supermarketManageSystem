@@ -11,7 +11,7 @@
 		from
 		authority t3
 		where t3.asortNum <![CDATA[   > ]]> (
-		SELECT MAX(t2.asortNum) 
+		SELECT MIN(t2.asortNum) 
 		FROM e_a_relation t1,authority t2
 		where t1.aid=t2.aid and t1.eid=#{userID} )
 	</select>
@@ -26,13 +26,14 @@
 			count(distinct t1.eid) as sum
 		</if>
 		FROM employee t1,e_a_relation t2,authority t3
-		WHERE t1.eid = t2.eid and t3.aid = t2.aid
+		WHERE t1.eid = t2.eid and t3.aid = t2.aid 	
 		<if test="name != ''">
 			and ename like '$%{name}%'
 		</if>
-		<if test="name != ''">
+		<if test="account != ''">
 			and eaccount = #{account}
 		</if>
+		    group by t1.eid   
 		<if test="startNum!=null">
 			limit ${startNum},${pageLength}
 		</if>

@@ -22,7 +22,7 @@ import com.softwareprocess.sms.service.CommonDatabaseService;
 import com.softwareprocess.sms.service.EmployeeManagerService;
 import com.softwareprocess.sms.tools.IDBuilder;
 import com.softwareprocess.sms.tools.JsonUtil;
-
+//员工管理模块
 @Controller
 @RequestMapping(value = "manager")
 public class EmployeeManagerController {
@@ -80,11 +80,12 @@ public class EmployeeManagerController {
 	@ResponseBody
 	@RequestMapping(value = "addEmployee",produces = "application/json; charset=utf-8")
 	public String addEmployee(HttpServletRequest request,
-			@RequestParam(value="name") String name, 
-			@RequestParam(value="account") String account, 
-			@RequestParam(value="password") String password,
-			@RequestParam(value="salary") String salary,
-			@RequestParam(value="authorityIDList") String authorityIDList
+			@RequestParam(value="ename") String ename, 
+			@RequestParam(value="eaccount") String eaccount, 
+			@RequestParam(value="epassword") String epassword,
+			@RequestParam(value="esalary") String esalary,
+			@RequestParam(value="ehiredate") String ehiredate,
+			@RequestParam(value="eauthorityIDList") String eauthorityIDList
 			){
 		if (!confirmAuthority(request)) {
 			return "authorityError";
@@ -92,17 +93,21 @@ public class EmployeeManagerController {
 		String resultCode = "error";
 		String eid = idBuilder.getEmployeeID();
 		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("ename", name);
+		param.put("ename", ename);
 		param.put("eid", eid);
-		param.put("eaccount", account);
-		param.put("epassword", password);
-		param.put("esalary", salary);
-		Date time= new java.sql.Date(new java.util.Date().getTime());
-		param.put("ehiredate", time);
-		System.out.println("员工姓名："+name);
+		param.put("eaccount", eaccount);
+		param.put("epassword", epassword);
+		param.put("esalary", esalary);
+		if (ehiredate.equals("")) {
+			Date time= new java.sql.Date(new java.util.Date().getTime());
+			param.put("ehiredate", time);
+		}else {
+			param.put("ehiredate", ehiredate);
+		}
+		//System.out.println("员工姓名："+ename);
 		int update = commonDatabaseService.insertStringData("employee", param);
 		if (update>0) {
-			String[] authorityIDIItem = authorityIDList.split(",");
+			String[] authorityIDIItem = eauthorityIDList.split(",");
 			List<Map<String, Object>> authorityParam = new ArrayList<Map<String,Object>>(); 
 			for (int i = 0; i < authorityIDIItem.length; i++) {
 				Map<String, Object> item = new HashMap<>();
@@ -110,7 +115,8 @@ public class EmployeeManagerController {
 				item.put("eid", eid);
 				authorityParam.add(item);
 			}
-			int insert = commonDatabaseService.insertStringData("e_a_relation", authorityParam);
+			//int ist = commonDatabaseService.insertStringData(table, data)
+			int insert = commonDatabaseService.insertStringDatas("e_a_relation", authorityParam);
 			if (insert>0) {
 				resultCode = "success";
 			}
@@ -129,14 +135,18 @@ public class EmployeeManagerController {
 	public  String deleteEmployee(HttpServletRequest request,
 			@RequestParam(value="eid") String eid
 			){
-		if (!confirmAuthority(request)) {
-			return "authorityError";
-		}
 		String resultCode = "error";
-		int delete = commonDatabaseService.deleteSingleData("employee", "eid", eid);
-		if (delete>0) {
-			resultCode = "success";
+		if (!confirmAuthority(request)) {
+			resultCode = "authorityError";
+		}else if (eid.equals("1")) {
+			resultCode =  "authorityError";
+		}else{
+			int delete = commonDatabaseService.deleteSingleData("employee", "eid", eid);
+			if (delete>0) {
+				resultCode = "success";
+			}
 		}
+		
 		return JsonUtil.toJSON(resultCode);
 	}
 	
@@ -154,14 +164,17 @@ public class EmployeeManagerController {
 	@RequestMapping(value = "updateEmployee",produces = "application/json; charset=utf-8")
 	public String updateEmployee(HttpServletRequest request,
 			@RequestParam(value="eid") String eid, 
-			@RequestParam(value="name",required = false) String ename, 
-			@RequestParam(value="account",required = false) String eaccount, 
-			@RequestParam(value="password",required = false) String epassword,
-			@RequestParam(value="salary",required = false) String esalary,
-			@RequestParam(value="hiredate",required = false) String ehiredate,
-			@RequestParam(value="authorityIDList",required = false) String authorityIDList
+			@RequestParam(value="ename",required = false) String ename, 
+			@RequestParam(value="eaccount",required = false) String eaccount, 
+			@RequestParam(value="epassword",required = false) String epassword,
+			@RequestParam(value="esalary",required = false) String esalary,
+			@RequestParam(value="ehiredate",required = false) String ehiredate,
+			@RequestParam(value="eauthorityIDList",required = false) String authorityIDList
 			){
-		if (!confirmAuthority(request)) {
+		if (!confirmAuthority(request) ) {
+			return "authorityError";
+		}
+		if (eid.equals("1")) {
 			return "authorityError";
 		}
 		System.out.println("ename"+ename);
@@ -184,7 +197,7 @@ public class EmployeeManagerController {
 					item.put("eid", eid);
 					authorityParam.add(item);
 				}
-				int insert = commonDatabaseService.insertStringData("e_a_relation", authorityParam);
+				int insert = commonDatabaseService.insertStringDatas("e_a_relation", authorityParam);
 				if (insert>0) {
 					resultCode = "success";
 				}

@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+/*销售/前台*/
+.saleDiv{width:360px;height:200px; border:#3EBBF1 solid 2px; margin:10px auto; position:absolute;-moz-border-radius:15px;
+border-radius:15px;marign-top:10px;left:10px;top:28px;
+paddiiing}
+.saleTitle{position:absolute;left:28px;top:4px;color:#3EBBF1;}

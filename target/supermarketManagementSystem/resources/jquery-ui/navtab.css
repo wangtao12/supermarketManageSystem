@@ -1,0 +1,161 @@
+@CHARSET "UTF-8";
+
+/*
+ *	导航页CSS一定要放在通用引用后边
+ */
+
+/* tabs */
+.subTab {
+	width: 100%;
+	height: 100%;
+	padding:0 0 0 0 ! important;
+	position: static;
+	padding-bottom: 26px;
+	overflow: hidden;
+}
+.mainframe{
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	z-index:-1;
+	overflow: auto;
+}
+
+/* tabs框架 */
+.ui-widget-content {
+    border: 0px;
+    padding:0px;
+    color: #333;
+    background: #ffffff;
+}
+.ui-corner-all{
+	border-top-left-radius:0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/* tabs标题 */
+.ui-widget-header {
+    border: 0px;
+    background: #A9A9A9;
+    color: #fff;
+    font-weight: normal;
+}
+/* tabs标题栏状态 */
+.ui-widget-header {
+	/* box-shadow:inset 0px 1px 2px #717171; */
+	font-size: 12px;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+	border: 1px solid #cccccc;
+	background: #f6f6f6;
+	font-weight: bold;
+	color: #261302;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+	color: #1c94c4;
+	text-decoration: none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	border: 1px solid #cccccc;
+	background: #fdf5ce;
+	font-weight: bold;
+	color: #261302;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited {
+	color: #261302;
+	text-decoration: none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	font-weight: normal;
+	color: #261302;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+	color: #261302;
+	text-decoration: none;
+}
+
+/* 修改的bc */
+.navbar-inverse {
+  background-color: #A9A9A9;
+  border:0px;
+  border-color: #A9A9A9;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #A9A9A9;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #A9A9A9;
+}
+
+/* 导航栏样式 */
+.panel {
+    border: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+.panel-heading {
+	background-color: #A9A9A9;
+	border: 0px;
+	border-radius:0px;
+}
+.panel-heading h4{
+	font-size:12px;
+	color:#ffffff;
+}
+.panel-body {
+	font-size: 12px;
+	color:#ffffff;
+}
+.panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body {
+	border-top: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+a:link {
+	text-decoration: none;
+}
+.list-group-item {
+	background-color: #A9A9A9;
+	border: 0px;
+	border-radius: 0px;
+}
+.list-group-item:first-child,.list-group-item:last-child {
+    border-radius: 0px;
+} 
+a.collapsed,a.list-group-item {
+	color: #fff;
+}
+.nav-copyright {
+	font-size: 12px;
+	color: #ffffff;
+	padding-left: 10px;
+}

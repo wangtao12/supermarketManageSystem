@@ -21,6 +21,42 @@ public class IDBuilder {
 		return id;
 	}
 	
+	/**
+	 * 商品单号ID
+	 * sn-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getSaleNumber() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "sn"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
+	 * 销售记录ID
+	 * sr-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getSaleRecordID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "sr"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
+	 * 退货记录ID
+	 * br-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getBackRecordID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "br"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
 	
 	
 	

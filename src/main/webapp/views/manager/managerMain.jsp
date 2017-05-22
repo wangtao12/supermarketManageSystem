@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<%@include file="../resources.jsp" %>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="<c:url value="/resources/js/jquery.md5.js"/>"></script>
-    <link href="<c:url value="/resources/css/saleMain.css"/>"
+<%@include file="../resources.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery.md5.js"/>"></script>
+<link href="<c:url value="/resources/css/saleMain.css"/>"
 	rel="stylesheet" type="text/css" media="screen" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript">
@@ -31,41 +32,46 @@
 <title></title>
 </head>
 <body>
-<div class="panel panel-success" style="padding:0px;border:0px;border-bottom:0px;margin: 10px;">
-    <div class="panel-body" style="background-color:#FFF;">
-        <form class="form1 form-inline" id="searchForm" >
-            <div class="form-group">
-                <label>员工姓名</label>
-                <input type="text" class="form-control" name="name" style="width:120px">
-            </div>
-            <div class="form-group">
-                <label>员工账户</label>
-                <input type="text" class="form-control" name="account" style="width:120px">
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="reloadData()" class="btn btn-primary" style="margin-top:18px;">查询</button>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="addTemp()" class="btn btn-primary" style="margin-top:18px;">新增</button>
-            </div>
-        </form>
-    </div>
-    <table id="dataTable" style="text-align:center;" class="display" cellspacing="0" ></table>
-</div>
+	<div class="panel panel-success"
+		style="padding: 0px; border: 0px; border-bottom: 0px; margin: 10px;">
+		<div class="panel-body" style="background-color: #FFF;">
+			<form class="form1 form-inline" id="searchForm">
+				<div class="form-group">
+					<label>员工姓名</label> <input type="text" class="form-control"
+						name="name" style="width: 120px">
+				</div>
+				<div class="form-group">
+					<label>员工账户</label> <input type="text" class="form-control"
+						name="account" style="width: 120px">
+				</div>
+				<div class="form-group">
+					<button type="button" onclick="reloadData()"
+						class="btn btn-primary" style="margin-top: 18px;">查询</button>
+				</div>
+				<div class="form-group">
+					<button type="button" onclick="addTemp()" class="btn btn-primary"
+						style="margin-top: 18px;">新增</button>
+				</div>
+			</form>
+		</div>
+		<table id="dataTable" style="text-align: center;" class="display"
+			cellspacing="0"></table>
+	</div>
 
 
 
 
-<!-- 新增模态框 -->
-<div class="modal fade" id="addTempBox" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">×</button><h4 class="modal-title" id="myModalLabel">编辑员工</h4>
-            </div>
-            <div style="width: 90%;margin: 10px auto;">
+	<!-- 新增模态框 -->
+	<div class="modal fade" id="addTempBox" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">编辑员工</h4>
+				</div>
+				<div style="width: 90%; margin: 10px auto;">
 					<form class="form-horizontal" id="addBoxForm">
 						<div class="form-group" style="display: none">
 							<label class="col-sm-2 control-label">id</label>
@@ -87,13 +93,7 @@
 									name="eaccount" required>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">入职日期</label>
-							<div class="col-sm-10">
-								<input type="text" class="DataInput form-control"
-									name="ehire">
-							</div>
-						</div>
+
 						<div class="form-group">
 							<label class="col-sm-2 control-label">密码</label>
 							<div class="col-sm-10">
@@ -109,6 +109,13 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 control-label">入职日期</label>
+							<div class="col-sm-10">
+								<input type="text" class="DataInput form-control"
+									name="ehiredate">
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-sm-2 control-label">权限</label>
 							<div class="col-sm-10">
 								<div class="btn-group" id="typeRadio">
@@ -118,17 +125,18 @@
 						</div>
 					</form>
 				</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="submitAddBoxData()">保存</button>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						onclick="submitAddBoxData()">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
     var datatable;
     $(document).ready(function() {
         dataTablesServerSideInit();
@@ -187,10 +195,22 @@
             {
                 "render" : function(data, type, row, meta){
                 	var button = '<button type="button" onclick="addTemp(\''+data.eid+'\')" class="btn btn-primary">修改</button> <button type="button" onclick="deleteListData(\''+data.eid+'\')" class="btn btn-danger">删除</button> ';
-                	
                     return button;
                 },
                 "targets" : 9
+            },
+            {
+                "render" : function(data, type, row, meta){
+                    if(data == "m") {
+                        return '男'
+                    }else if(data == "f"){
+                    	return '女'
+                    }else{
+                    	//console.log(data);
+                    	return ''
+                    }
+                },
+                "targets" : [1]
             },
             {
                 "render" : function(data, type, row, meta){
@@ -199,8 +219,9 @@
                     }
                     return data;
                 },
-                "targets" : [1,7,8]
+                "targets" : [7,8]
             }
+            
         ]
     };
 
@@ -240,36 +261,50 @@
      * 删除数据
      * @param id
      */
-    function deleteListData(eid) {
-        swal({
-                title: "确认删除?",
-                text: "您将删除该用户!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "删除!",
-                closeOnConfirm: false
-            },
-            function(){
-                $.post('<c:url value="/manager/deleteEmployee"/>',{eid:eid},function(result){
-                    result = $.trim(result);//空白字符要去除
-                    if (result == "success"){
-                        swal("提示", "删除成功!", "success");
-                        reloadData();
-                    } else if(result == "authorityError"){
-                        swal("您没有此权限!");
-                    }else{
-                    	swal("删除失败，请重试!");
-                    }
-                },'text');
-            });
-    }
-
-    /**
-     * 提交用户编辑框数据
-     */
     
-	
+	function deleteListData(eid) {
+		swal(
+				{
+					title : "确认删除?",
+					text : "您将删除该用户!",
+					type : "warning",
+					showCancelButton : true,
+					confirmButtonColor : "#DD6B55",
+					confirmButtonText : "删除!",
+					closeOnConfirm : false
+				},
+				function() {
+					$.ajax({
+								type : "post",
+								url : "<c:url value="/manager/deleteEmployee"/>",
+								dataType : "json",
+								data : {
+									eid : eid
+								},
+								contentType : "application/x-www-form-urlencoded; charset=utf-8",
+								success : function(data) {
+									data = $.trim(data);
+									//console.log(data);
+									if (data == 'success') {
+										swal("提示", "操作成功!", "success")
+										reloadData();
+										$('#addTempBox').modal('hide');
+									} else if (data == 'authorityError') {
+										swal("您没有此权限!");
+										$('#addTempBox').modal('hide');
+									} else {
+										swal("删除失败，请重试!");
+									}
+								}
+							});
+
+				});
+	}
+
+	/**
+	 * 提交用户编辑框数据
+	 */
+
 	function submitAddBoxData() {
 		//校验
 		var eid = '';
@@ -277,44 +312,52 @@
 			var mdata = {};
 			var authorityIDList = '';
 			setFormDataInObject($("#addBoxForm"), mdata);
-			var obj=$($("#typeRadio").children(".authorityID"));
-			for(var i=0;i<obj.length;i++){
-				if(obj[i].checked){
-					if(i==0){
-						authorityIDList += obj[i].value;
-					}else{
-						authorityIDList += (","+obj[i].value);
+			var obj = $($("#typeRadio").children(".authorityID"));
+			var j = 0;
+			for (var i = 0; i < obj.length; i++) {
+				if (obj[i].checked) {
+
+					if (j == 0) {
+						authorityIDList = obj[i].value;
+						console.log("进入i=0");
+					} else {
+						authorityIDList += ("," + obj[i].value);
 					}
+					j++;
 				}
 			}
+			console.log(authorityIDList);
 			mdata.eauthorityIDList = authorityIDList;
+			//console.log(mdata);
 			eid = $("input[name='eid']").val();
 			var murl = '';
-			if(eid == ''){
+			if (eid == '') {
+				console.log("eid为空")
 				murl = "<c:url value="/manager/addEmployee"/>";
-			}else{
+			} else {
 				murl = "<c:url value="/manager/updateEmployee"/>";
 			}
-			$.ajax({
-	            type : "post",
-	            url : murl,
-	            dataType : "text",
-	            data : mdata,
-	            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-	            success : function(data) {
-	                data=$.trim(data);
-	                if(data == 'success') {
-	                	swal("提示", "操作成功!", "success")
-	                    reloadData();
-	                	$('#addTempBox').modal('hide');
-	                }  else if(result == "authorityError"){
-                        swal("您没有此权限!");
-                    }else{
-                    	swal("删除失败，请重试!");
-                    }
-	            }
-	        });
-
+			$
+					.ajax({
+						type : "post",
+						url : murl,
+						dataType : "json",
+						data : mdata,
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						success : function(data) {
+							data = $.trim(data);
+							console.log(data);
+							if (data == 'success') {
+								swal("提示", "操作成功!", "success")
+								reloadData();
+								$('#addTempBox').modal('hide');
+							} else if (data == 'authorityError') {
+								swal("您没有此权限!");
+							} else {
+								swal("删除失败，请重试!");
+							}
+						}
+					});
 		}
 	}
 </script>

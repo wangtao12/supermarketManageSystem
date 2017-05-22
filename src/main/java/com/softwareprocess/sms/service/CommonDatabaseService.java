@@ -96,7 +96,7 @@ public class CommonDatabaseService {
      * @param table 表名
      * @param data 数据
      */
-    public int insertStringData(String table,List<Map<String, Object>> data) {
+    public int insertStringDatas(String table,List<Map<String, Object>> data) {
         Hashtable param = new Hashtable();
         Map<String, Object> firstItem = data.get(0);
         param.put("data", data);

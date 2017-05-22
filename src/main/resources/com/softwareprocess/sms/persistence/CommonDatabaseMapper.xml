@@ -31,18 +31,16 @@
 	</insert>
 
 	<insert id="insertStringDatas" parameterType="java.util.HashMap" >
-		INSERT ALL
-		<foreach item="item" index="index" collection="data" >
-			INTO ${table}
-			<foreach index="key"  item="value" collection="firstItem" separator="," open="("  close=")" >
+		INSERT INTO ${table}
+		<foreach index="key"  item="value" collection="firstItem" separator="," open="("  close=")" >
 				${key}
-			</foreach>
-			VALUES
+		</foreach>
+		VALUES
+		<foreach item="item" index="index" collection="data"  separator=",">
 			<foreach index="key" item="value" collection="item" separator="," open="("  close=")">
 				#{value}
 			</foreach>
 		</foreach>
-		SELECT * FROM DUAL
 	</insert>
 	
 	<insert id="insertData" parameterType="java.util.HashMap" >
