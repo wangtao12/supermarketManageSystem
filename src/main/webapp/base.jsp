@@ -160,6 +160,7 @@
                 <% } %>
                 <% if(userAuthorityList.indexOf("销售")  != -1 ) { %>
                 <li><a href="#" onclick="addTab('销售管理','./views/sale/saleMain.jsp','saleMain')" >销售管理</a></li>
+                <li><a href="#" onclick="addTab('销售管理','./views/sale/saleRecord.jsp','saleRecord')" >销售记录</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("采购")  != -1) { %>
                 <li><a href="#" onclick="addTab('查看库存','./views/purchase/purchaseMain.jsp','purchaseMain')" >查看库存</a></li>

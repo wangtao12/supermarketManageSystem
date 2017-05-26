@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.softwareprocess.sms.param.DataTableReceiveParam;
 import com.softwareprocess.sms.persistence.SaleMapper;
+import com.softwareprocess.sms.tools.MapUtil;
 
 @Service
 public class SaleService {
@@ -35,6 +39,16 @@ public class SaleService {
 		Map<String, Object> param  =  new HashMap<>();
 		param.put("goodName", gname);
 		return saleMapper.getGoodInfo(param);
+	}
+
+	public List<Map<String, Object>> getSaleRecordList(HttpServletRequest request, String userID, String snumber) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		new DataTableReceiveParam(request).setDatabaseQuery(param);
+		MapUtil.putMapParaEmpty(param, "userID", userID);
+		MapUtil.putMapParaEmpty(param, "snumber", snumber);
+		//MapUtil.putMapParaEmpty(param, "account", account);
+		
+		return saleMapper.getSaleRecordList(param);
 	}
 	
 	

@@ -11,4 +11,6 @@ public interface SaleMapper {
 
 	List<Map<String, Object>> getGoodInfo(Map<String, Object> param);
 
+	List<Map<String, Object>> getSaleRecordList(Map<String, Object> param);
+
 }

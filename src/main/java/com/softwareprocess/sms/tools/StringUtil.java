@@ -2,6 +2,9 @@ package com.softwareprocess.sms.tools;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import net.sf.json.JSONArray;
 
 public class StringUtil {
 	
@@ -25,6 +28,18 @@ public class StringUtil {
 			}
 		}
 		return result.toString();
+	}
+	
+	
+	/**
+	 * 将json数据转化为List<Map<String, Object>>
+	 * @param jsonArray
+	 * @return
+	 */
+	public static List<Map<String, Object>> JsonToList(String jsonArray) {
+		JSONArray json = JSONArray.fromObject(jsonArray);
+		List<Map<String,Object>> mapListJson = (List)json;
+		return mapListJson;
 	}
 
 }

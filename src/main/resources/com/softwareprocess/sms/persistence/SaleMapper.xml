@@ -35,5 +35,28 @@
 		SELECT t1.*
 		FROM good_kind t1
 	</select>
+	
+	
+	<!-- 获取销售记录列表 -->
+	<select id="getSaleRecordList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.sdate,'%Y-%m-%d') as sdate,
+			t1.snumber,sum(t1.money) as money,t2.ename,t2.eaccount
+		</if>
+		<if test="startNum==null">
+			count(distinct t1.snumber) as sum
+		</if>
+		FROM sell_record t1,employee t2
+		WHERE t1.eid = t2.eid and t1.status='1'
+		<if test="snumber != ''">
+			and t1.snumber = #{snumber}
+		</if>
+		group by t1.snumber   
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
 
 </mapper>

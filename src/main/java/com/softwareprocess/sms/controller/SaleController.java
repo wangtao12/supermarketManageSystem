@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.softwareprocess.sms.param.DataTableSendParam;
 import com.softwareprocess.sms.service.CommonDatabaseService;
 import com.softwareprocess.sms.service.SaleService;
 import com.softwareprocess.sms.tools.IDBuilder;
 import com.softwareprocess.sms.tools.JsonUtil;
+import com.softwareprocess.sms.tools.StringUtil;
 
 //销售模块
 @Controller
@@ -62,9 +64,8 @@ public class SaleController {
 		return JsonUtil.toJSON(result);
 	}
 	
-	
-	
 	/**
+	 * 销售商品
 	 * @param request
 	 * @param saleList 销售商品列表  包括 商品ID 商品数量
 	 * @return
@@ -72,21 +73,39 @@ public class SaleController {
 	@ResponseBody
 	@RequestMapping(value = "SaleGoods",produces = "application/json; charset=utf-8")
 	public  String SaleGoods(HttpServletRequest request,
-			@RequestParam(value="saleList",required = false) List<Map<String, Object>> saleList
+			@RequestParam(value="saleList",required = false) String saleList
 			){
 		String resultCode = "error";
-		String snumber = idBuilder.getSaleNumber();
-		for (int i = 0; i < saleList.size(); i++) {
-			String sid = idBuilder.getSaleRecordID();
-			Map<String, Object> item = saleList.get(i);
-			item.put("sid", sid);
-			item.put("snumber", snumber);
-			Date time= new java.sql.Date(new java.util.Date().getTime());
-			item.put("sdate", time);
+		HttpSession session = request.getSession();
+		String eid = session.getAttribute("userID").toString();
+		String snumber = idBuilder.getSaleNumber();  //单号
+		List<Map<String, Object>> lSaleList;
+		if (saleList==null) {
+			return JsonUtil.toJSON(resultCode);
+		}else{
+			lSaleList = StringUtil.JsonToList(saleList); 
+			for(Map<String,Object> m:lSaleList){    //取list集合里的那一条Map集合
+	            for(String s:m.keySet()){    //取map集合里的String类型的key，
+	                System.out.println(m.get(s));//根据key迭代输出value
+	            }
+	        }
 		}
-		int insert = commonDatabaseService.insertStringDatas("sale_record", saleList);
+		for (int i = 0; i < lSaleList.size(); i++) {
+			String sid = idBuilder.getSaleRecordID(); //销售记录id
+			Map<String, Object> item = lSaleList.get(i);
+			item.put("eid", eid);
+			item.put("sid", sid);
+			item.remove("gname");
+			item.remove("counter");
+			item.put("snumber", snumber);
+			//item.put("money", money);
+			Date time= new java.sql.Date(new java.util.Date().getTime());
+			System.out.println(time);
+			item.put("sdate", time.toString());
+		}
+		int insert = commonDatabaseService.insertStringDatas("sell_record", lSaleList);
 		if (insert>0) {
-			resultCode = "success";
+			resultCode = snumber;
 		}
 		return JsonUtil.toJSON(resultCode);
 	}
@@ -101,6 +120,7 @@ public class SaleController {
 	 * @param remark 退货说明
 	 * @return  返回应退还金额 ，添加退货记录
 	 */
+	@ResponseBody
 	@RequestMapping(value = "BackGoods",produces = "application/json; charset=utf-8")
 	public  String BackGoods(HttpServletRequest request,
 			@RequestParam(value="snumber",required = false) String snumber,
@@ -138,5 +158,64 @@ public class SaleController {
 		}
 		return JsonUtil.toJSON(resultCode);
 	}
+	/**
+	 * 确认支付订单
+	 * @param request
+	 * @param snumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "confirmSale",produces = "application/json; charset=utf-8")
+	public  String confirmSale(HttpServletRequest request,
+			@RequestParam(value="snumber",required = false) String snumber){
+		String resultCode = "error";
+		int update = commonDatabaseService.updateSingleData("sell_record", "snumber", snumber, "status", "1");
+		if (update>0) {
+			
+			resultCode = "success";
+		}else if (update==0) {
+			resultCode = "failure";
+		}
+		return JsonUtil.toJSON(resultCode);
+	}
+	
+	/**
+	 * 获取销售记录列表
+	 * @param request
+	 * @param snumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getSaleRecordList",produces = "application/json; charset=utf-8")
+	public  String getSaleRecordList(HttpServletRequest request,
+			@RequestParam(value="snumber",required = false) String snumber){
+		HttpSession session = request.getSession();
+		String userID = session.getAttribute("userID").toString();
+		List<Map<String, Object>> resultCount = saleService.getSaleRecordList(null, userID,snumber);
+		List<Map<String, Object>> result = saleService.getSaleRecordList(request, userID,snumber);
+		return new DataTableSendParam(resultCount.get(0).get("sum"), resultCount.get(0).get("sum"), result)
+				.toJSON();
+	}
+	
+	
+	/**
+	 * 取消订单
+	 * @param request
+	 * @param snumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "cancelSale",produces = "application/json; charset=utf-8")
+	public  String cancelSale(HttpServletRequest request,
+			@RequestParam(value="snumber",required = false) String snumber){
+		String resultCode = "error";
+		int del = commonDatabaseService.deleteSingleData("sell_record", "snumber", snumber);
+		if (del>0) {
+			resultCode = "success";
+		}
+		return JsonUtil.toJSON(resultCode);
+	}
+	
+
 
 }

@@ -319,7 +319,7 @@
 
 					if (j == 0) {
 						authorityIDList = obj[i].value;
-						console.log("进入i=0");
+						//console.log("进入i=0");
 					} else {
 						authorityIDList += ("," + obj[i].value);
 					}
