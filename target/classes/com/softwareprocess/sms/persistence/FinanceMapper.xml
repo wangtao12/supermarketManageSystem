@@ -4,7 +4,20 @@
 
 <mapper namespace="com.softwareprocess.sms.persistence.FinanceMapper">
 
-	
+	<select id="getSalary" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			t1.*
+		</if>
+		<if test="startNum==null">
+			count(distinct t1.eid) as sum
+		</if>
+		FROM employee t1
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
 	
 
 </mapper>

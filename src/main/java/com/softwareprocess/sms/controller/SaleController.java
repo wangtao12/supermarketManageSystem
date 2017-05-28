@@ -130,9 +130,9 @@ public class SaleController {
 			){
 		String resultCode = "error";
 		HttpSession session = request.getSession();
-		String eid = session.getAttribute("userID").toString();
-		String brid = idBuilder.getBackRecordID();
-		float brmoney = 0;
+		String eid = session.getAttribute("userID").toString();//售货员id
+		String brid = idBuilder.getBackRecordID();//退货记录id
+		float brmoney = 0; //退货的金额
 		String gid = null;
 		int brcount = Integer.valueOf(count);
 		Date time= new java.sql.Date(new java.util.Date().getTime());
@@ -142,6 +142,8 @@ public class SaleController {
 			float price = (float) goodItem.get("gprice");
 			gid = goodItem.get("gid").toString();
 			brmoney = brcount*price;
+		}else {
+			return JsonUtil.toJSON("infoError");
 		}
 		Map<String, Object> param = new HashMap<>();
 		param.put("brid", brid);
@@ -214,6 +216,15 @@ public class SaleController {
 			resultCode = "success";
 		}
 		return JsonUtil.toJSON(resultCode);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getSaleDetail",produces = "application/json; charset=utf-8")
+	public String getSaleDetail(HttpServletRequest request,
+			@RequestParam(value="snumber",required = false) String snumber) {
+		List<Map<String, Object>> detailList = saleService.getSaleDetail(snumber);
+		return JsonUtil.toJSON(detailList);
+		
 	}
 	
 

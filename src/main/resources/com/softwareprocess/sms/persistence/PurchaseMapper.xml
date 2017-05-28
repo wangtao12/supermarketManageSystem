@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.softwareprocess.sms.persistence.PurchaseMapper">
+	<!-- 获取商品库存列表 -->
 	<select id="getGoodStockList" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
 		SELECT
@@ -14,12 +15,33 @@
 		</if>
 		FROM good t1 LEFT JOIN
 			(SELECT t2.gid,SUM(t2.scount) AS scount FROM sell_record t2
-				WHERE date_format(t2.sdate,'%Y-%m')=date_format(now(),'%Y-%m')
+				WHERE date_format(t2.sdate,'%Y-%m')=date_format(now(),'%Y-%m') 	and status='1'
 				GROUP BY gid) t2 ON t1.gid = t2.gid
 		WHERE 1
 		<if test="startNum!=null">
 			limit ${startNum},${pageLength}
 		</if>
 	</select>
+	
+	<!-- 获取进货记录列表 -->
+	<select id="getRestockRecordList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.rdate,'%Y-%m-%d') as rdate,
+			t1.rid,t1.eid,t2.ename,t2.eaccount,t3.pname,t1.rstatus as status,
+			t1.rprofit,t1.rbatch,t1.filePath,t1.remark
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM restock_record t1,employee t2,provider t3
+		WHERE t1.eid = t2.eid AND t1.pid = t3.pid
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+	
+	
 
 </mapper>

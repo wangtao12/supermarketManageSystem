@@ -36,6 +36,13 @@ public class EmployeeManagerController {
 	private IDBuilder idBuilder = new IDBuilder();
 	
 		
+	/**
+	 * 获取员工列表
+	 * @param request
+	 * @param name
+	 * @param account
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getEmployeeList",produces = "application/json; charset=utf-8")
 	public  String getEmployeeList(HttpServletRequest request,

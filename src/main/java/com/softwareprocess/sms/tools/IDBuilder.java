@@ -22,6 +22,65 @@ public class IDBuilder {
 	}
 	
 	/**
+	 * 工资记录ID
+	 * sr-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getSalaryRecordID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "sr"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
+	 * 进货记录ID
+	 * rr-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getRestockRecordID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "rr"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
+	 * 审批项ID
+	 * wc-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getConfirmID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "wc"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	/**
+	 * 文件ID
+	 * file-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getProjectUploadDir() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "file"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
+	 * 账单ID
+	 * bill-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getBillID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "bill"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
 	 * 商品单号ID
 	 * sn-[yyMMddhhmmss][4位随机数]
 	 * @return
@@ -87,6 +146,8 @@ public class IDBuilder {
 	    String fixLenthString = String.valueOf(pross);  
 	    return fixLenthString.substring(1, strLength + 1);  
 	}
+
+
 	
 
 }

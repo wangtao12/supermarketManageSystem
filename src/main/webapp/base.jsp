@@ -151,19 +151,24 @@
                 <li><a href="#" onclick="addTab('员工管理','./views/manager/managerMain.jsp','managerMain')" >员工管理</a></li>
                 <% } %>
                  <% if(userAuthorityList.indexOf("审批") != -1 ) { %>
-                <li><a href="#" onclick="addTab('审批管理','./views/approval/approvalMain.jsp','approvalMain')" >审批管理</a></li>
+                <li><a href="#" onclick="addTab('报销审批','./views/approval/approvalMain.jsp','approvalMain')" >报销审批</a></li>
+                <li><a href="#" onclick="addTab('工资单审批','./views/approval/approvalSalary.jsp','approvalSalary')" >工资审批</a></li>
+                <li><a href="#" onclick="addTab('进货单审批','./views/approval/approvalRestock.jsp','approvalRestock')" >进货审批</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("财务") != -1 ) { %>
-                 <li><a href="#" onclick="addTab('生成本月工资单','./views/finance/financeMain.jsp','financeMain')" >生成本月工资单</a></li>
-                 <li><a href="#" onclick="addTab('添加报销','./views/finance/financeMain.jsp','financeMain')" >添加报销</a></li>
-                 <li><a href="#" onclick="addTab('财务记录','./views/finance/financeMain.jsp','financeMain')" >财务记录</a></li>
+                <li><a href="#" onclick="addTab('添加报销','./views/finance/addBill.jsp','addBill')" >添加报销</a></li>
+                <li><a href="#" onclick="addTab('导出工资单','./views/finance/salary.jsp','salary')" >导出工资</a></li>
+                <li><a href="#" onclick="addTab('添加工资单','./views/finance/addSalary.jsp','addSalary')" >添加工资</a></li>
+                <li><a href="#" onclick="addTab('报销记录','./views/finance/billRecord.jsp','billRecord')">报销记录</a></li>
+                <li><a href="#" onclick="addTab('工资单记录','./views/finance/salaryRecord.jsp','salaryRecord')">工资记录</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("销售")  != -1 ) { %>
-                <li><a href="#" onclick="addTab('销售管理','./views/sale/saleMain.jsp','saleMain')" >销售管理</a></li>
-                <li><a href="#" onclick="addTab('销售管理','./views/sale/saleRecord.jsp','saleRecord')" >销售记录</a></li>
+                <li><a href="#" onclick="addTab('前台销售','./views/sale/saleMain.jsp','saleMain')">前台销售</a></li>
+                <li><a href="#" onclick="addTab('销售记录','./views/sale/saleRecord.jsp','saleRecord')">销售记录</a></li>
                 <% } %>
                 <% if(userAuthorityList.indexOf("采购")  != -1) { %>
                 <li><a href="#" onclick="addTab('查看库存','./views/purchase/purchaseMain.jsp','purchaseMain')" >查看库存</a></li>
+                <li><a href="#" onclick="addTab('添加进货','./views/purchase/addPurchase.jsp','addPurchase')" >添加进货</a></li>
                 <li><a href="#" onclick="addTab('进货记录','./views/purchase/purchaseRecord.jsp','purchaseRecord')" >进货记录</a></li>
                 <li><a href="#" onclick="addTab('供应商管理','./views/purchase/provider.jsp','provider')" >供应商管理</a></li>
                 <% } %>

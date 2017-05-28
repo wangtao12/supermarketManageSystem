@@ -50,6 +50,13 @@ public class SaleService {
 		
 		return saleMapper.getSaleRecordList(param);
 	}
+
+	public List<Map<String, Object>> getSaleDetail(String snumber) {
+		// TODO Auto-generated method stub
+		Map<String, Object> param = new HashMap<>();
+		param.put("snumber", snumber);
+		return saleMapper.getSaleDetail(param);
+	}
 	
 	
 	

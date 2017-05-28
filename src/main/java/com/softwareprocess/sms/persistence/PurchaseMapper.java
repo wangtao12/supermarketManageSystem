@@ -7,4 +7,6 @@ public interface PurchaseMapper {
 
 	List<Map<String, Object>> getGoodStockList(Map<String, Object> param);
 
+	List<Map<String, Object>> getRestockRecordList(Map<String, Object> param);
+
 }

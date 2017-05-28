@@ -15,6 +15,7 @@
 		FROM e_a_relation t1,authority t2
 		where t1.aid=t2.aid and t1.eid=#{userID} )
 	</select>
+	<!-- 获取员工列表 -->
 	<select id="getEmployeeList" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
 		SELECT

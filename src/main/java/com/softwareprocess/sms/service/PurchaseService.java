@@ -23,4 +23,10 @@ public class PurchaseService {
 		return purchaseMapper.getGoodStockList(param);
 	}
 
+	public List<Map<String, Object>> getRestockRecordList(HttpServletRequest request) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		new DataTableReceiveParam(request).setDatabaseQuery(param);
+		return purchaseMapper.getRestockRecordList(param);
+	}
+
 }

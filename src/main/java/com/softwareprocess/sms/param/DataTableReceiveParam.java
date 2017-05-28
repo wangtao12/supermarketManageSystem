@@ -16,7 +16,7 @@ public class DataTableReceiveParam {
 	 * 每页条数
 	 */
 	private String pageLength = null;
-	private String maxNum = null;
+	//private String maxNum = null;
 
 	/**
 	 * 构造函数
@@ -27,7 +27,7 @@ public class DataTableReceiveParam {
 		if(request != null) {
 			this.startNum = request.getParameter("start");
 			this.pageLength = request.getParameter("length");
-			this.maxNum = String.valueOf(Integer.parseInt(startNum)+Integer.parseInt(pageLength));
+			//this.maxNum = String.valueOf(Integer.parseInt(startNum)+Integer.parseInt(pageLength));
 		}
 	}
 
@@ -40,13 +40,13 @@ public class DataTableReceiveParam {
 		super();
 		this.startNum = startPage;
 		this.pageLength = pageLength;
-		this.maxNum = String.valueOf(Integer.parseInt(startNum)+Integer.parseInt(pageLength));
+		//this.maxNum = String.valueOf(Integer.parseInt(startNum)+Integer.parseInt(pageLength));
 	}
 
 	public void setDatabaseQuery(Map<String, Object> param) {
 		param.put("startNum",startNum);
 		param.put("pageLength",pageLength);
-		param.put("maxNum",maxNum);
+		//param.put("maxNum",maxNum);
 	}
 
 	public String getStartNum() {

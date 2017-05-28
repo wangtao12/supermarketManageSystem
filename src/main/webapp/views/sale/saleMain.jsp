@@ -431,11 +431,9 @@
 			};
 			$.ajax({
 				type : "post",
-				url : "<c:url value="/sale/cancelSale"/>",
+				url : "<c:url value="/sale/BackGoods"/>",
 				dataType : "json",
-				data : {
-					snumber : snumber
-				},
+				data : data,
 				contentType : "application/x-www-form-urlencoded; charset=utf-8",
 				success : function(mdata) {
 					//console.log(mdata);

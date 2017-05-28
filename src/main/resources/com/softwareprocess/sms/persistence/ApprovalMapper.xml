@@ -4,7 +4,100 @@
 
 <mapper namespace="com.softwareprocess.sms.persistence.ApprovalMapper">
 
+	<!-- 获取报销审核列表 -->
+	<select id="getApprovalList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.bdate,'%Y-%m-%d') as bdate,
+			t1.btype,t1.bmoney,t1.bstatus as status,t2.ename,t1.eid,t1.bid
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM bill t1,employee t2
+		WHERE t1.eid = t2.eid 
+		<if test="status != ''">
+			and t1.bstatus = #{status}
+		</if>
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
 	
 	
+	<!-- 获取工资审核列表 -->
+	<select id="getApprovalSalaryList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.srdata,'%Y-%m-%d') as srdata,
+			t1.srid,t1.eid,t1.srstuatus as status,t2.ename,t2.eaccount,t1.count,t1.money,t1.month,t1.filePath
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM salary_record t1,employee t2
+		WHERE t1.eid = t2.eid 
+		<if test="status != ''">
+			and t1.srstuatus = #{status}
+		</if>
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+	
+	<!-- 获取进货审核列表 -->
+	<select id="getApprovalRestockList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.rdate,'%Y-%m-%d') as rdate,
+			t1.rid,t1.eid,t1.rstatus as status,t2.ename,t2.eaccount,t1.rprofit,t1.rbatch,t1.filePath,t3.pname
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM restock_record t1,employee t2,provider t3
+		WHERE t1.eid = t2.eid  AND t3.pid = t1.pid
+		<if test="status != ''">
+			and t1.rstatus = #{status}
+		</if>
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+	
+	
+	<!-- 获取文件审核列表 -->
+	<select id="getApprovalFileList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+		<if test="startNum!=null">
+			date_format(t1.wdate,'%Y-%m-%d') as wdate,
+			t1.wtype,t1.filePath,t1.wstatus as status,t2.ename,t1.eid,t1.wid
+		</if>
+		<if test="startNum==null">
+			count(*) as sum
+		</if>
+		FROM waitconfirm t1,employee t2
+		WHERE t1.eid = t2.eid 
+		<if test="status != ''">
+			and t1.bstatus = #{status}
+		</if>
+		<if test="startNum!=null">
+			limit ${startNum},${pageLength}
+		</if>
+	</select>
+	
+	
+	<!-- 获取文件审核信息 -->
+	<select id="getApprovalInfo" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT
+			t1.wtype,t1.filePath,t1.wid
+		FROM waitconfirm t1
+		WHERE t1.wid = #{wid}
+	</select>
 
 </mapper>

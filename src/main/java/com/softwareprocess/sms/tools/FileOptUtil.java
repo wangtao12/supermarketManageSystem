@@ -18,7 +18,7 @@ import java.util.*;
 
 /**
  * 文件相关操作
- * @author w
+ * @author yangyue
  *
  */
 public class FileOptUtil {

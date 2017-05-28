@@ -46,11 +46,11 @@
 				</div>
 				<div class="form-group">
 					<button type="button" onclick="reloadData()"
-						class="btn btn-primary" style="margin-top: 18px;">查询</button>
+						class="btn btn-primary" style="margin-left: 18px;">查询</button>
 				</div>
 				<div class="form-group">
 					<button type="button" onclick="addTemp()" class="btn btn-primary"
-						style="margin-top: 18px;">新增</button>
+						style="margin-left: 18px;">新增</button>
 				</div>
 			</form>
 		</div>
