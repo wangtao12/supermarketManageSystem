@@ -15,7 +15,7 @@
         <form class="form1 form-inline" id="searchForm" >
             <div class="form-group">
                 <label>审核状态</label>
-                <select class="form-control" name="checkMark" style="width:120px">
+                <select class="form-control" name="status" style="width:120px">
                 	<option value="" selected="selected">全部</option>
                     <option value="0">待审核</option>
                 	<option value="2">否决</option>
@@ -96,28 +96,23 @@
                     	return data;
                     }
                 },
-                "targets" : 6
+                "targets" : 7
             },
             {
                 "render" : function(data, type, row, meta){
-                	if(data == "s") {
-                        return "工资单";
+                	if(typeof data == "undefined") {
+                        return '暂无'
                     }
-                	else if(data == "r") {
-                    	return "进货单";
-                    }
-                	else{
-                    	return "其他";
-                    }
+                    return data;
                 },
-                "targets" : 3
+                "targets" : 8
             },
             {
                 "render" : function(data, type, row, meta){
                 	return '<a href="<c:url value="/approval/downloadApprovalFile"/>?filePath=\''+data.filePath+'\'">下载</a>';
                 	//return '<button type="button" onclick="download(\''+data.filePath+'\')" class="btn btn-primary"></button>';
                 },
-                "targets" : 5
+                "targets" : 6
             },
             {
                 "render" : function(data, type, row, meta){
@@ -126,7 +121,7 @@
                     }
                     return data;
                 },
-                "targets" : [0,1,2,3,4,5,6,7]
+                "targets" : [0,1,2,3,4,5,6,7,8]
             }
         ]
     };

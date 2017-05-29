@@ -29,4 +29,10 @@ public class PurchaseService {
 		return purchaseMapper.getRestockRecordList(param);
 	}
 
+	public List<Map<String, Object>> getProviderList(HttpServletRequest request) {
+		Map<String, Object> param = new HashMap<>();
+		// TODO Auto-generated method stub
+		return purchaseMapper.getProviderList(param);
+	}
+
 }

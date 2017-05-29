@@ -22,6 +22,18 @@ public class IDBuilder {
 	}
 	
 	/**
+	 * 商品ID
+	 * g-[yyMMddhhmmss][4位随机数]
+	 * @return
+	 */
+	public String getGoodID() {
+		DateUtil dateUtil = new DateUtil();
+		String time = dateUtil.getCurrentTime("yyMMddhhmmss");
+		String id = "g"+"-"+time+getFixLenthString(4);
+		return id;
+	}
+	
+	/**
 	 * 工资记录ID
 	 * sr-[yyMMddhhmmss][4位随机数]
 	 * @return

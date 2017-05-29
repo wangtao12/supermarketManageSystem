@@ -17,7 +17,7 @@
 		<div class="panel-body" style="background-color: #FFF;">
 			<form class="form1 form-inline" id="searchForm">
 				<div class="form-group">
-					<label>审核状态</label> <select class="form-control" name="checkMark"
+					<label>审核状态</label> <select class="form-control" name="status"
 						style="width: 120px">
 						<option value="" selected="selected">全部</option>
 						<option value="0">待审核</option>
@@ -47,17 +47,18 @@
 				</div>
 				<div style="width: 90%; margin: 10px auto;">
 					<form class="form-horizontal" id="addBoxForm">
-						<div class="row">
-							<div class="col-sm-6">
-								审核状态： <select class="DataInput" name="checkMark" id="checkMark">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">审核：</label>
+							<div class="col-sm-10">
+								<select class="DataInput" name="checkMark" id="checkMark">
 									<option value="0" selected="selected">待审核</option>
 									<option value="2">否决</option>
 									<option value="1">通过</option>
 								</select>
 							</div>
 						</div>
-						<div class="form-group" style="display: none">
-							<label class="col-sm-2 control-label">id</label>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">审核意见</label>
 							<div class="col-sm-10">
 								<input type="text" class="DataInput form-control" id="remark">
 							</div>
@@ -197,7 +198,7 @@
     /**
      * 打开新增编辑框
      */
-    function addTemp(wid) {
+    function addTemp(srid) {
     	$("#srid").val(srid);
     	$("#remark").val("");
         $('#addTempBox').modal({});

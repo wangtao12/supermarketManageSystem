@@ -17,7 +17,7 @@
 		<div class="panel-body" style="background-color: #FFF;">
 			<form class="form1 form-inline" id="searchForm">
 				<div class="form-group">
-					<label>审核状态</label> <select class="form-control" name="checkMark"
+					<label>审核状态</label> <select class="form-control" name="status"
 						style="width: 120px">
 						<option value="" selected="selected">全部</option>
 						<option value="0">待审核</option>
@@ -56,8 +56,8 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group" style="display: none">
-							<label class="col-sm-2 control-label">id</label>
+						<div class="form-group" >
+							<label class="col-sm-2 control-label">审核意见</label>
 							<div class="col-sm-10">
 								<input type="text" class="DataInput form-control" id="remark">
 							</div>
@@ -65,7 +65,7 @@
 						<div class="form-group" style="display: none">
 							<label class="col-sm-2 control-label">id</label>
 							<div class="col-sm-10">
-								<input type="text" class="DataInput form-control" id="wid">
+								<input type="text" class="DataInput form-control" id="rid">
 							</div>
 						</div>
 					</form>
@@ -151,7 +151,7 @@
             },
             {
                 "render" : function(data, type, row, meta){
-                    return '<button type="button" onclick="addTemp(\''+data.wid+'\')" class="btn btn-primary">审核</button>';
+                    return '<button type="button" onclick="addTemp(\''+data.rid+'\')" class="btn btn-primary">审核</button>';
                 },
                 "targets" : 8
             },
@@ -197,8 +197,8 @@
     /**
      * 打开新增编辑框
      */
-    function addTemp(wid) {
-    	$("#wid").val(wid);
+    function addTemp(rid) {
+    	$("#wid").val(rid);
     	$("#remark").val("");
         $('#addTempBox').modal({});
     }
@@ -207,7 +207,7 @@
      * 审批提交
      */
     function submitAddBoxData() {
-        var data = {"wid":$("#wid").val(),
+        var data = {"rid":$("#rid").val(),
         		"remark":$("#remark").val(),
         		"status":$('#checkMark option:selected').val()
         }

@@ -117,20 +117,23 @@
     	formData.append("rbatch",$("#rbatch").val());
     	formData.append("rprofit",$("#rprofit").val());
     	console.log(formData);
-    	 $.ajax({
-             type : "post",
-             url : "<c:url value="/purchase/addPurchase"/>",
-             dataType : "json",
-             data : data,
-             contentType: "application/x-www-form-urlencoded; charset=utf-8",
-             success : function(data) {
-                 if(data == 'success') {
-                     swal("提示", "提交成功!", "success")
-                 } else {
-                     swal("修改失败，请重试!");
-                 }
-             }
-         });
+    	$.ajax({
+    		processData: false,
+    		contentType: false,
+            type : "post",
+            async: false,  
+            url : "<c:url value="/purchase/addPurchase"/>",
+            dataType : "json",
+            data : formData,  
+            cache: false,  
+            success : function(data) {
+            	swal("提示","上传成功");
+            },
+            error: function(data){
+            	swal("提示","请重试");
+            }
+        });
+    	
     }
 </script>
 </body>

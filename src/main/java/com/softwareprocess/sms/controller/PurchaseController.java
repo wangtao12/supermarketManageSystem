@@ -81,7 +81,7 @@ public class PurchaseController {
 		param.put("rbatch", "'"+rbatch+"'");
 		param.put("rprofit", "'"+rprofit+"'");
 		param.put("filePath", "'"+fileStatus+"'");
-		param.put("rstate", "'0'");
+		param.put("rstatus", "'0'");
 		param.put("rdate", "now()");
 		int ist = commonDatabaseService.insertData("restock_record", param);
 		if (ist>0) {
@@ -90,12 +90,26 @@ public class PurchaseController {
 		return JsonUtil.toJSON(resultCode);
 	}
 	
+	/**
+	 * 获取进货记录列表
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getRestockRecordList", produces = "application/json; charset=utf-8")
 	public String getRestockRecordList(HttpServletRequest request) {
 		List<Map<String, Object>> resultCount = purchaseService.getRestockRecordList(null);
 		List<Map<String, Object>> result = purchaseService.getRestockRecordList(request);
 		return new DataTableSendParam(resultCount.get(0).get("sum"), resultCount.get(0).get("sum"), result).toJSON();
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "getProviderList", produces = "application/json; charset=utf-8")
+	public String getProviderList(HttpServletRequest request) {
+		List<Map<String, Object>> result = purchaseService.getProviderList(request);
+		return JsonUtil.toJSON(result);
 	}
 
 }

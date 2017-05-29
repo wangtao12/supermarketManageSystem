@@ -41,15 +41,22 @@
             </div>
             <div style="width: 90%;margin: 10px auto;">
                 <form class="form-horizontal" id="addBoxForm">
-	                <div class="row">
-	                    <div class="col-sm-6">审核状态：
-                            <select class="DataInput" name="checkMark" id="checkMark">
-                                <option value="0" selected="selected">待审核</option>
-                                <option value="2">否决</option>
-                                <option value="1">通过</option>
-                            </select>
-                        </div>
-	                </div>
+	                <div class="form-group">
+							<label class="col-sm-2 control-label">审核：</label>
+							<div class="col-sm-10">
+								<select class="DataInput" name="checkMark" id="checkMark">
+									<option value="0" selected="selected">待审核</option>
+									<option value="2">否决</option>
+									<option value="1">通过</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">审核意见</label>
+							<div class="col-sm-10">
+								<input type="text" class="DataInput form-control" id="remark">
+							</div>
+						</div>
 	                <div class="form-group" style="display: none">
 							<label class="col-sm-2 control-label">id</label>
 							<div class="col-sm-10">
@@ -180,7 +187,8 @@
      */
     function submitAddBoxData() {
         var data = {"bid":$("#bid").val(),
-        		"status":$('#checkMark option:selected').val()
+        		"status":$('#checkMark option:selected').val(),
+        		"remark":$("#remark").val()
         }
         //console.log(data);
         $.ajax({

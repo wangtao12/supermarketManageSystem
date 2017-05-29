@@ -43,5 +43,13 @@
 	</select>
 	
 	
+	<!-- 获取供应商列表 -->
+	<select id="getProviderList" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT t1.*
+		FROM provider t1
+	</select>
+	
+	
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.softwareprocess.sms.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -118,39 +119,100 @@ public class ApprovalController {
 	@RequestMapping(value = "updateApproval",produces = "application/json; charset=utf-8")
 	public String updateApproval(HttpServletRequest request,
 			@RequestParam(value="bid",required = false) String bid,
+			@RequestParam(value="remark",required = false) String remark,
 			@RequestParam(value="status",required = false) String status
 			){
 		String resultCode = "error";
-		int udt = commonDatabaseService.updateSingleData("bill", "bid", bid, "bstatus", status);
+		Map<String, Object> param = new HashMap<>();
+		param.put("remark", remark);
+		param.put("status", status);
+		int udt = commonDatabaseService.updateStringData("bill", "bid", bid, param);
 		if (udt>0) {
 			resultCode = "success";
 		}
 		return JsonUtil.toJSON(resultCode);
 	}
+	
+	
 	/**
-	 * 审核文件
+	 * 审批工资单
 	 * @param request
-	 * @param bid
+	 * @param srid
+	 * @param remark
 	 * @param status
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "updateApprovalFile",produces = "application/json; charset=utf-8")
-	public String updateApprovalFile(HttpServletRequest request,
-			@RequestParam(value="wid",required = false) String wid,
+	@RequestMapping(value = "approvalSalary",produces = "application/json; charset=utf-8")
+	public String approvalSalary(HttpServletRequest request,
+			@RequestParam(value="srid",required = false) String srid,
+			@RequestParam(value="remark",required = false) String remark,
 			@RequestParam(value="status",required = false) String status
 			){
 		String resultCode = "error";
-		int udt = commonDatabaseService.updateSingleData("waitconfirm", "wid", wid, "wstatus", status);
+		Map<String, Object> param = new HashMap<>();
+		param.put("remark", remark);
+		param.put("srstatus", status);
+		int udt = commonDatabaseService.updateStringData("salary_record", "srid", srid, param);
+		if (udt>0) {
+			resultCode = "success";
+		}
+		return JsonUtil.toJSON(resultCode);
+	}
+	
+	/**
+	 * 审批进货单
+	 * @param request
+	 * @param srid
+	 * @param remark
+	 * @param status
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "approvalRestock",produces = "application/json; charset=utf-8")
+	public String approvalRestock(HttpServletRequest request,
+			@RequestParam(value="rid",required = false) String rid,
+			@RequestParam(value="remark",required = false) String remark,
+			@RequestParam(value="status",required = false) String status
+			){
+		String resultCode = "error";
+		Map<String, Object> param = new HashMap<>();
+		param.put("remark", remark);
+		param.put("srstatus", status);
+		int udt = commonDatabaseService.updateStringData("restock_record", "rid", rid, param);
 		if (udt>0) {
 			resultCode = "success";
 		}
 		if ("1".equals(status)) {
 			String path = request.getServletContext().getRealPath("sms/supermarket/");
-			approvalService.opExcelInsert(wid,path);
+			approvalService.opExcelInsert(rid, path);
 		}
 		return JsonUtil.toJSON(resultCode);
 	}
+//	/**
+//	 * 审核文件
+//	 * @param request
+//	 * @param bid
+//	 * @param status
+//	 * @return
+//	 */
+//	@ResponseBody
+//	@RequestMapping(value = "updateApprovalFile",produces = "application/json; charset=utf-8")
+//	public String updateApprovalFile(HttpServletRequest request,
+//			@RequestParam(value="wid",required = false) String wid,
+//			@RequestParam(value="status",required = false) String status
+//			){
+//		String resultCode = "error";
+//		int udt = commonDatabaseService.updateSingleData("waitconfirm", "wid", wid, "wstatus", status);
+//		if (udt>0) {
+//			resultCode = "success";
+//		}
+//		if ("1".equals(status)) {
+//			String path = request.getServletContext().getRealPath("sms/supermarket/");
+//			approvalService.opExcelInsert(wid,path);
+//		}
+//		return JsonUtil.toJSON(resultCode);
+//	}
 	
 	
 	
