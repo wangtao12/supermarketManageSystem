@@ -73,6 +73,14 @@
 	<select id="getApprovalInfo" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
 		select t1.*
+		from restock_record t1
+		where t1.rid=#{rid}
+	</select>
+	
+	<!-- 获取商品信息 -->
+	<select id="getGoodIdByName" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select t1.*
 		from good t1
 		where t1.gname=#{gname}
 	</select>

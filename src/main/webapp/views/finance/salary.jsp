@@ -22,17 +22,6 @@
 			<div class="form-group">
 				<label>本月工资单</label>
 			</div>
-			<div class="form-group">
-				<label style="margin-left:100px">上传工资单</label>
-			</div>
-			<div class="form-group">
-				<form enctype="multipart/form-data"  class="fileForm">
-					<input id="files" class="files" type="file" 
-						data-min-file-count="1">
-					<button type="submit" class="btn btn-primary" onclick="addFile()">Submit</button>
-                  	<button type="reset" class="btn btn-default">Reset</button>
-				</form>
-			</div>
 		</form>
 	</div>
 	<table id="dataTable" style="text-align: center;" class="display"
@@ -135,35 +124,6 @@
         datatable.destroy();
         loadData();
     } 
-    
-    function addFile(){
-    	//console.log("进入函数");
-    	var files = document.getElementById("files").files;
-    	var formData = new FormData(); 
-    	formData.append("files",files[0]);
-    	console.log(formData);
-    	var data={
-    			"files":files
-    	};
-    	$.ajax({
-    		processData: false,
-    		contentType: false,
-            type : "post",
-            async: false,  
-            url : "<c:url value="/finance/addSalary"/>",
-            dataType : "json",
-            data : formData,  
-            cache: false,  
-            success : function(data) {
-            	swal("提示","上传成功");
-            },
-            error: function(data){
-            	swal("提示","请重试");
-            }
-        });
-    }
-    
-  	
 </script>
 
 </body>

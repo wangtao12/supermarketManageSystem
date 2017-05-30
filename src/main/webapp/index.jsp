@@ -38,7 +38,6 @@ function login(){
         type : "post",
         url : "loginCheck",
         dataType : "text",
-        async : false,
         data : {
             "userName":userName,
             "password":password
@@ -48,8 +47,8 @@ function login(){
         	console.log(data)
             data=$.trim(data);
             if(data == 'success') {
-                self.location.href = "base.jsp";
-                alert("跳转中。。。");
+                self.location = "base.jsp";
+               // alert("跳转中。。。");
             } else if(data == 'error') {
                 alert("身份信息验证错误。");
             }

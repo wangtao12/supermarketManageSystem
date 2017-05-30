@@ -15,8 +15,8 @@ public interface ApprovalMapper {
 
 	List<Map<String, Object>> getApprovalRestockList(Map<String, Object> param);
 
-	List<Map<String, Object>> getGoodIdByName(String gname);
+	List<Map<String, Object>> getGoodIdByName(Map<String, Object> gparam);
 
-	String getGkidByName(String type);
+	List<Map<String, Object>> getGkidByName(String type);
 
 }

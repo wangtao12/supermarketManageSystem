@@ -198,7 +198,7 @@
      * 打开新增编辑框
      */
     function addTemp(rid) {
-    	$("#wid").val(rid);
+    	$("#rid").val(rid);
     	$("#remark").val("");
         $('#addTempBox').modal({});
     }
